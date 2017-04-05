@@ -1,25 +1,20 @@
 FROM ubuntu:xenial
-MAINTAINER Kyle Manna <kyle@kylemanna.com>
+MAINTAINER Oliver Gugger <gugger@gmail.com>
 
 ARG USER_ID
 ARG GROUP_ID
 
-ENV HOME /bitcoin
+ENV HOME /iopd
 
 # add user with specified (or default) user/group ids
 ENV USER_ID ${USER_ID:-1000}
 ENV GROUP_ID ${GROUP_ID:-1000}
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -g ${GROUP_ID} bitcoin \
-	&& useradd -u ${USER_ID} -g bitcoin -s /bin/bash -m -d /bitcoin bitcoin
+RUN groupadd -g ${GROUP_ID} iopd \
+	&& useradd -u ${USER_ID} -g iopd -s /bin/bash -m -d /iopd iopd
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8842ce5e && \
-    echo "deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main" > /etc/apt/sources.list.d/bitcoin.list
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		bitcoind \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -42,13 +37,13 @@ RUN set -x \
 
 ADD ./bin /usr/local/bin
 
-VOLUME ["/bitcoin"]
+VOLUME ["/iopd"]
 
 EXPOSE 8332 8333 18332 18333
 
-WORKDIR /bitcoin
+WORKDIR /iopd
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-CMD ["btc_oneshot"]
+CMD ["IoP-oneshot.sh"]
