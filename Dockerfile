@@ -53,7 +53,7 @@ ADD ./bin /usr/local/bin
 
 VOLUME ["/iopd"]
 
-EXPOSE 8332 8333 18332 18333
+EXPOSE 8332 8333 18332 18333 4877
 
 WORKDIR /iopd
 
