@@ -29,11 +29,25 @@ RUN set -x \
 	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
-	&& gosu nobody true \
-	&& apt-get purge -y \
-		ca-certificates \
-		wget \
-	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	&& gosu nobody true
+
+RUN set -x \
+	&& apt-get update && apt-get install -y build-essential autoconf libtool pkg-config libboost-all-dev libssl-dev libevent-dev
+
+RUN set -x \
+	&& cd /tmp \
+	&& wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
+	&& tar xzvf db-4.8.30.NC.tar.gz \
+	&& cd db-4.8.30.NC/build_unix/ \
+	&& ../dist/configure --enable-cxx \
+	&& make \
+	&& make install
+
+RUN ln -s /usr/local/BerkeleyDB.4.8 /usr/include/db4.8
+RUN ln -s /usr/include/db4.8/include/* /usr/include
+RUN ln -s /usr/include/db4.8/lib/* /usr/lib
+
+RUN set -x apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD ./bin /usr/local/bin
 
