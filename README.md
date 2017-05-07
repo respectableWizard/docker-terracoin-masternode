@@ -18,6 +18,8 @@ docker run \
   guggero/iopd
 ```
 
+This will create the folder `.IoP` in `/some/directory` with a bare `IoP.conf`. You might want to edit the `IoP.conf` before running the container because with the bare config file it doesn't do much.
+
 Start mining
 ------------
 
