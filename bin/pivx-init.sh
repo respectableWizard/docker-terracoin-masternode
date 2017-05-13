@@ -16,8 +16,12 @@ rpcuser=${RPCUSER:-pivxrpc}
 rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
 EOF
 
+    echo "Copying blockchain backup to folder .pivx"
+    unzip /opt/blockchain.zip -d $HOME/.pivx/
+
 fi
 
 cat $HOME/.pivx/pivx.conf
+ls -lah $HOME/.pivx/
 
 echo "Initialization completed successfully"
