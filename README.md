@@ -1,7 +1,7 @@
-IoPd for Docker
+pivx masternode for docker
 ===================
 
-Docker image that runs the IoP daemon
+Docker image that runs the pivx daemon which can be turned into a masternode with the correct configuration.
 
 Quick Start
 -----------
@@ -9,31 +9,38 @@ Quick Start
 ```bash
 docker run \
   -d \
-  -v /some/directory:/iopd \
-  -p 8333:8333 \
-  -p 8332:8332 \
-  -p 4877:4877 \
-  -e DISABLEWALLET=0 \
-  --name=iopd \
-  guggero/iopd
+  -v /some/directory:/pivx \
+  -p 51472:51472 \
+  --name=pivx \
+  guggero/pivx
 ```
 
-This will create the folder `.IoP` in `/some/directory` with a bare `IoP.conf`. You might want to edit the `IoP.conf` before running the container because with the bare config file it doesn't do much.
+This will create the folder `.pivx` in `/some/directory` with a bare `pivx.conf`. You might want to edit the `pivx.conf` before running the container because with the bare config file it doesn't do much, it's basically just an empty wallet.
 
-Start mining
+Start as masternode
 ------------
 
-To start mining, edit your IoP.conf (should be in /some/directory/.IoP/ following the docker run command example above):
+In general, you should follow a tutorial on how to prepare your masternode (create private key, send PIVX and so on). I suggest [this tutorial](https://pivxmasternode.org/2017/03/08/step-step-guide-setting-masternode/).
+
+To start the masternode functionality, edit your pivx.conf (should be in /some/directory/.pivx/ following the docker run command example above):
 
 ```
-testnet=0
+rpcuser=<SOME LONG RANDOM USER NAME>
+rpcpassword=<SOME LONG RANDOM PASSWORD>
+rpcallowip=127.0.0.1
+listen=1
 server=1
+daemon=1
+logtimestamps=1
+maxconnections=256
 printtoconsole=1
-rpcuser=ioprpc
-rpcpassword=<SOMELONGRANDOMPASSWORD>
-mine=1
-minewhitelistaddr=<YOUR_PUBLIC_IOP_ADDRESSS>
-mineto=<YOUR_PUBLIC_IOP_ADDRESSS>
+masternode=1
+externalip=<SERVER IP ADDRESS>
+bind=<SERVER IP ADDRESS>
+masternodeaddr=<SERVER IP ADDRESS>:51472
+masternodeprivkey=<MASTERNODE PRIVATE KEY>
 ```
 
-Where `<YOUR_PUBLIC_IOP_ADDRESSS>` is the public IoP address that has been whitelisted.
+Where `<SERVER IP ADDRESS>` is the public facing IPv4 or IPv6 address that the masternode will be reachable at.
+
+`<MASTERNODE PRIVATE KEY>` is the private key that you generated earlier (with `pivx-cli masternode genkey`).
