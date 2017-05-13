@@ -27,20 +27,17 @@ To start the masternode functionality, edit your pivx.conf (should be in /some/d
 ```
 rpcuser=<SOME LONG RANDOM USER NAME>
 rpcpassword=<SOME LONG RANDOM PASSWORD>
-rpcallowip=127.0.0.1
-listen=1
+rpcallowip=::/0
 server=1
-daemon=1
 logtimestamps=1
 maxconnections=256
 printtoconsole=1
 masternode=1
-externalip=<SERVER IP ADDRESS>
-bind=<SERVER IP ADDRESS>
 masternodeaddr=<SERVER IP ADDRESS>:51472
 masternodeprivkey=<MASTERNODE PRIVATE KEY>
 ```
 
 Where `<SERVER IP ADDRESS>` is the public facing IPv4 or IPv6 address that the masternode will be reachable at.
+Don't forget to put your IPv6 address in brackets! For example `[aaaa:bbbb:cccc::0]:51472`
 
 `<MASTERNODE PRIVATE KEY>` is the private key that you generated earlier (with `pivx-cli masternode genkey`).
