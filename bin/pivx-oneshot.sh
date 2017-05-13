@@ -8,7 +8,8 @@ pivx-init.sh
 if [ $# -gt 0 ]; then
     args=("$@")
 else
-    args=("-rpcallowip=::/0")
+    args=("")
 fi
 
-exec pivxd "${args[@]}"
+exec pivxd
+
