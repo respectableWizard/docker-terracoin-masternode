@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -ex
+set -x
 
 EXECUTABLE=/opt/pivx/bin/pivxd
 DIR=$HOME/.pivx

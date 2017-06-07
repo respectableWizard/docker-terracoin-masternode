@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -x
 
 NAMESPACE="guggero"
 DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"

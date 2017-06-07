@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y unzip \
 
 EXPOSE 51470 51472
 
-RUN set -x && pt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN set -x && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME ["${HOME}"]
 WORKDIR ${HOME}
