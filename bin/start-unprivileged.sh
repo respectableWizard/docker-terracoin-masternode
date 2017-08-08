@@ -24,9 +24,6 @@ rpcuser=${RPCUSER:-pivxrpc}
 rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
 EOF
 
-    echo "Copying blockchain backup to folder $DIR"
-    unzip /opt/blockchain.zip -d $DIR/
-
 fi
 
 cat $FILE

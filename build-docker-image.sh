@@ -14,4 +14,4 @@ function build {
   docker push $NAMESPACE/$COMPONENT:$VERSION
 }
 
-build pivx 2.2.1
+build pivx 2.3.0

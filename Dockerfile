@@ -38,9 +38,6 @@ RUN wget -O /tmp/${COMPONENT}.tar.gz "https://github.com/PIVX-Project/PIVX/relea
     && tar zxvf ${COMPONENT}.tar.gz \
     && mv /tmp/${COMPONENT}-* /opt/${COMPONENT}
 
-RUN apt-get update && apt-get install -y unzip \
-    && wget -O /opt/blockchain.zip "http://108.61.216.160/cryptochainer.chains/chains/PIVX_blockchain.zip"
-
 EXPOSE 51470 51472
 
 RUN set -x && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
