@@ -5,7 +5,7 @@ ARG USER_ID
 ARG GROUP_ID
 ARG VERSION
 
-ENV USER pivx
+ENV USER terracoin
 ENV COMPONENT ${USER}
 ENV HOME /${USER}
 
@@ -32,13 +32,12 @@ RUN set -x \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true
 
-ENV VERSION ${VERSION:-2.2.1}
-RUN wget -O /tmp/${COMPONENT}.tar.gz "https://github.com/PIVX-Project/PIVX/releases/download/v${VERSION}/pivx-${VERSION}-x86_64-linux-gnu.tar.gz" \
-    && cd /tmp/ \
-    && tar zxvf ${COMPONENT}.tar.gz \
-    && mv /tmp/${COMPONENT}-* /opt/${COMPONENT}
+ENV VERSION ${VERSION:-0.12.1.5p}
+RUN mkdir -p /opt/${COMPONENT}/bin \
+    && wget -O /opt/${COMPONENT}/bin/${COMPONENT}-cli "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}-cli" \
+    && wget -O /opt/${COMPONENT}/bin/${COMPONENT}d "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}d"
 
-EXPOSE 51470 51472
+EXPOSE 13333 13332
 
 RUN set -x && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

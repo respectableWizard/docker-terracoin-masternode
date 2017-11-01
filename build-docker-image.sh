@@ -14,4 +14,4 @@ function build {
   docker push $NAMESPACE/$COMPONENT:$VERSION
 }
 
-build pivx $1
+build terracoin $1

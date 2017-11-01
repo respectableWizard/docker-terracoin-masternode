@@ -1,9 +1,9 @@
 #!/bin/bash
 set -x
 
-EXECUTABLE=/opt/pivx/bin/pivxd
-DIR=$HOME/.pivx
-FILENAME=pivx.conf
+EXECUTABLE=/opt/terracoin/bin/terracoind
+DIR=$HOME/.terracoin
+FILENAME=terracoin.conf
 FILE=$DIR/$FILENAME
 
 # create directory and config file if it does not exist yet
@@ -20,7 +20,7 @@ rpcallowip=10.0.0.0/8
 rpcallowip=172.16.0.0/12
 rpcallowip=192.168.0.0/16
 server=1
-rpcuser=${RPCUSER:-pivxrpc}
+rpcuser=${RPCUSER:-terracoinrpc}
 rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
 EOF
 
