@@ -35,7 +35,8 @@ RUN set -x \
 ENV VERSION ${VERSION:-0.12.1.5p}
 RUN mkdir -p /opt/${COMPONENT}/bin \
     && wget -O /opt/${COMPONENT}/bin/${COMPONENT}-cli "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}-cli" \
-    && wget -O /opt/${COMPONENT}/bin/${COMPONENT}d "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}d"
+    && wget -O /opt/${COMPONENT}/bin/${COMPONENT}d "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}d" \
+    && chmod +x /opt/${COMPONENT}/bin/*
 
 EXPOSE 13333 13332
 
