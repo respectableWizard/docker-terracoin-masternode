@@ -2,7 +2,7 @@
 set -x
 
 EXECUTABLE=/opt/terracoin/bin/terracoind
-DIR=$HOME/.terracoin
+DIR=$HOME/.terracoincore
 FILENAME=terracoin.conf
 FILE=$DIR/$FILENAME
 

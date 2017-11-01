@@ -34,11 +34,29 @@ RUN set -x \
 
 ENV VERSION ${VERSION:-0.12.1.5p}
 RUN set -x \
-    && apt-get update && apt-get install -y libboost-all-dev \
     && mkdir -p /opt/${COMPONENT}/bin \
     && wget -O /opt/${COMPONENT}/bin/${COMPONENT}-cli "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}-cli" \
     && wget -O /opt/${COMPONENT}/bin/${COMPONENT}d "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}d" \
     && chmod +x /opt/${COMPONENT}/bin/*
+
+RUN set -x \
+    && apt-get update && apt-get install -y libboost-all-dev build-essential autoconf libtool pkg-config libssl-dev libevent-dev
+
+RUN set -x \
+	&& cd /tmp \
+	&& wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
+	&& tar xzvf db-4.8.30.NC.tar.gz \
+	&& cd db-4.8.30.NC/build_unix/ \
+	&& ../dist/configure --enable-cxx \
+	&& make \
+	&& make install
+
+RUN ln -s /usr/local/BerkeleyDB.4.8 /usr/include/db4.8
+RUN ln -s /usr/include/db4.8/include/* /usr/include
+RUN ln -s /usr/include/db4.8/lib/* /usr/lib
+
+RUN set -x \
+    && apt-get update && apt-get install -y libminiupnpc-dev
 
 EXPOSE 13333 13332
 
