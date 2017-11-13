@@ -3,7 +3,7 @@ terracoin masternode for docker
 
 Docker image that runs the terracoin daemon which can be turned into a masternode with the correct configuration.
 
-If you like this image, buy me a coffee ;) D6QXCF5kvbpzwxrq7DsYK6bx83t98Xe8sR
+If you like this image, buy me a coffee ;) 1GuggerownoWdKkMUA8C2ySkA8AK7Ucn7n
 
 Quick Start
 -----------
