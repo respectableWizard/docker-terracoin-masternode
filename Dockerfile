@@ -37,6 +37,7 @@ RUN set -x \
     && mkdir -p /opt/${COMPONENT}/bin \
     && wget -O /opt/${COMPONENT}/bin/${COMPONENT}-cli "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}-cli" \
     && wget -O /opt/${COMPONENT}/bin/${COMPONENT}d "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}d" \
+    && wget -O /opt/${COMPONENT}/bin/${COMPONENT}-qt "https://github.com/terracoin/terracoin/releases/download/${VERSION}/${COMPONENT}-qt" \
     && chmod +x /opt/${COMPONENT}/bin/*
 
 RUN set -x \
