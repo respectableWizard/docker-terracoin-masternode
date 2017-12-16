@@ -13,13 +13,13 @@ Quick Start
 ```bash
 docker run \
   -d \
+  -p 13333:13333 \
   -v /some/directory:/terracoin \
-  -p 51472:51472 \
   --name=terracoin \
   guggero/terracoin
 ```
 
-This will create the folder `.terracoin` in `/some/directory` with a bare `terracoin.conf`. You might want to edit the `terracoin.conf` before running the container because with the bare config file it doesn't do much, it's basically just an empty wallet.
+This will create the folder `.terracoincore` in `/some/directory` with a bare `terracoin.conf`. You might want to edit the `terracoin.conf` before running the container because with the bare config file it doesn't do much, it's basically just an empty wallet.
 
 Start as masternode
 ------------
