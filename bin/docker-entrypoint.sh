@@ -4,4 +4,4 @@ set -x
 USER=terracoin
 
 chown -R ${USER} .
-exec gosu ${USER} "$@"
+cron && exec gosu ${USER} "$@"

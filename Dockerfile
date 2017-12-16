@@ -57,7 +57,17 @@ RUN ln -s /usr/include/db4.8/include/* /usr/include
 RUN ln -s /usr/include/db4.8/lib/* /usr/lib
 
 RUN set -x \
-    && apt-get update && apt-get install -y libminiupnpc-dev
+    && apt-get update && apt-get install -y libminiupnpc-dev python-virtualenv git virtualenv cron \
+    && mkdir -p /sentinel \
+    && cd /sentinel \
+    && git clone https://github.com/terracoin/sentinel.git . \
+    && virtualenv ./venv \
+    && ./venv/bin/pip install -r requirements.txt \
+    && touch sentinel.log \
+    && chown -R ${USER} /sentinel \
+    && echo '* * * * * '${USER}' cd /sentinel && SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py >> sentinel.log 2>&1' >> /etc/cron.d/sentinel \
+    && chmod 0644 /etc/cron.d/sentinel \
+    && touch /var/log/cron.log
 
 EXPOSE 13333 13332
 

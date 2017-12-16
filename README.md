@@ -3,6 +3,8 @@ terracoin masternode for docker
 
 Docker image that runs the terracoin daemon which can be turned into a masternode with the correct configuration.
 
+This image also runs [sentinel](https://github.com/terracoin/sentinel) (which is required for a masternode to get rewards) every minute as a cron job.
+
 If you like this image, buy me a coffee ;) 1GuggerownoWdKkMUA8C2ySkA8AK7Ucn7n
 
 Quick Start
