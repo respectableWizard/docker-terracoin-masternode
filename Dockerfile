@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-MAINTAINER Oliver Gugger <gugger@gmail.com>
+MAINTAINER respectableWizard
 
 ARG USER_ID
 ARG GROUP_ID
@@ -15,7 +15,7 @@ ENV GROUP_ID ${GROUP_ID:-1000}
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -g ${GROUP_ID} ${USER} \
-	&& useradd -u ${USER_ID} -g ${USER} -s /bin/bash -m -d ${HOME} ${USER}
+    && useradd -u ${USER_ID} -g ${USER} -s /bin/bash -m -d ${HOME} ${USER}
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -33,8 +33,8 @@ RUN set -x \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && gosu nobody true
 
-ENV VERSION ${VERSION:-0.12.1.8}
-RUN wget -O /tmp/${COMPONENT}.tar.gz "https://terracoin.io/bin/terracoin-core-${VERSION}/terracoin-0.12.1-x86_64-linux-gnu.tar.gz" \
+ENV VERSION ${VERSION:-0.12.2.4}
+RUN wget -O /tmp/${COMPONENT}.tar.gz "https://terracoin.io/bin/terracoin-core-${VERSION}/terracoin-0.12.2-x86_64-linux-gnu.tar.gz" \
     && cd /tmp/ \
     && tar zxvf ${COMPONENT}.tar.gz \
     && mv /tmp/${COMPONENT}-* /opt/${COMPONENT} \
