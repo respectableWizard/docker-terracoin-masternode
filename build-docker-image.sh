@@ -13,5 +13,4 @@ function build {
   docker push $NAMESPACE/$COMPONENT:latest
   docker push $NAMESPACE/$COMPONENT:$VERSION
 }
-
 build terracoin $1
