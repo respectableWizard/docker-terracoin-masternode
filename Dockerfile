@@ -33,7 +33,7 @@ RUN set -x \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && gosu nobody true
 
-ENV VERSION ${VERSION:-0.12.2.4}
+ENV VERSION ${VERSION:-0.12.2.5}
 RUN wget -O /tmp/${COMPONENT}.tar.gz "https://terracoin.io/bin/terracoin-core-${VERSION}/terracoin-0.12.2-x86_64-linux-gnu.tar.gz" \
     && cd /tmp/ \
     && tar zxvf ${COMPONENT}.tar.gz \
