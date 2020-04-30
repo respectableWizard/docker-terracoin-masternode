@@ -21,9 +21,9 @@ rpcallowip=172.16.0.0/12
 rpcallowip=192.168.0.0/16
 server=1
 masternode=1
-rpcuser=${RPCUSER:-terracoinrpc}
 masternodeprivkey=${MASTERNODEGENKEY}
-rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
+rpcuser=${RPCUSER:-terracoinrpc}
+rpcpassword="${RPCPASSWORD:-`< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;`}"
 EOF
 
 fi
