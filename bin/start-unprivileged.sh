@@ -15,7 +15,7 @@ if [ ! -e "$FILE" ]; then
     # Seed a random password for JSON RPC server
     cat <<EOF > $FILE
 printtoconsole=${PRINTTOCONSOLE:-1}
-externalip=${MASTERNODE_IP}
+externalip=${EXTERNALIP}
 rpcbind=127.0.0.1
 rpcallowip=10.0.0.0/8
 rpcallowip=172.16.0.0/12
