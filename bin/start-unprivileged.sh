@@ -20,6 +20,7 @@ rpcbind=127.0.0.1
 rpcallowip=10.0.0.0/8
 rpcallowip=172.16.0.0/12
 rpcallowip=192.168.0.0/16
+port=${PORT:-13333}
 server=1
 masternode=1
 masternodeprivkey=${MASTERNODEGENKEY}
